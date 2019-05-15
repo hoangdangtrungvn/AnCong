@@ -7,7 +7,7 @@ use GuzzleHttp\Client;
 
 class DoctorController extends Controller
 {
-    public function index()
+    public function index( )
     {
         $client = new Client();
         $response = $client->request('GET', 'https://reqres.in/api/users?page=2');
