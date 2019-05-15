@@ -12,6 +12,7 @@ class DoctorController extends Controller
         $client = new Client();
         $response = $client->request('GET', 'https://reqres.in/api/users?page=2');
 
+        
         echo $response->getStatusCode(); # 200
         echo $response->getHeaderLine('content-type'); # 'application/json; charset=utf8'
         echo $response->getBody(); # '{"id": 1420053, "name": "guzzle", ...}'
