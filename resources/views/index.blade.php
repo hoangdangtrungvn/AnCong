@@ -13,7 +13,6 @@
                     @foreach($featured_posts as $item)
                     <li class="news-item">
                         <a href="{{ route('post.show', $item->slug) }}" rel="bookmark">{{ $item->title }}</a> - <span class="entry-date">{{ $item->created_at->diffForHumans() }}</span>
-                    
                     </li>
                     @endforeach
                 </ul>
