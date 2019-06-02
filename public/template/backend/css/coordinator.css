@@ -1,0 +1,27 @@
+.box-search {
+    margin-bottom: 10px;
+}
+
+select:disabled {
+    background-color: #bdbdbd;
+}
+
+.ml-5 {
+    margin-left: 5px;
+}
+
+.ml-10 {
+    margin-left: 10px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.pd-0 {
+    padding: 0;
+}

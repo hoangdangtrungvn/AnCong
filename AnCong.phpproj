@@ -40,7 +40,7 @@
     <Compile Include="app\Http\Controllers\CoordinatorController.php" />
     <Compile Include="app\Http\Controllers\DieticianController.php" />
     <Compile Include="app\Http\Controllers\GeneralPractitionerController.php" />
-    <Compile Include="app\Http\Controllers\PatientController.php" />
+    <Compile Include="app\Http\Controllers\_GeneralPractitionerController.php" />
     <Compile Include="app\Http\Controllers\SpecialistController.php" />
     <Compile Include="app\Http\Middleware\Authenticate.php" />
     <Compile Include="app\Http\Middleware\CheckForMaintenanceMode.php" />
@@ -160,7 +160,8 @@
     <Compile Include="resources\lang\en\validation.php" />
     <Compile Include="resources\sass\app.scss" />
     <Compile Include="resources\sass\_variables.scss" />
-    <Compile Include="resources\views\patient\index.blade.php" />
+    <Compile Include="resources\views\auth\login.blade.php" />
+    <Compile Include="resources\views\general_practitioner\index.blade.php" />
     <Compile Include="resources\views\welcome.blade.php" />
     <Compile Include="routes\api.php" />
     <Compile Include="routes\channels.php" />
@@ -261,7 +262,7 @@
     <Folder Include="resources\views\coordinator" />
     <Folder Include="resources\views\dietician" />
     <Folder Include="resources\views\general_practitioner" />
-    <Folder Include="resources\views\patient" />
+    <Folder Include="resources\views\auth\" />
     <Folder Include="resources\views\specialist" />
     <Folder Include="resources\views" />
     <Folder Include="resources" />

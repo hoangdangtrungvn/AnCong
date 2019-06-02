@@ -13,11 +13,11 @@ return [
     |
      */
 
-    'title'            => 'DoctorStrange',
+    'title'              => 'DoctorStrange',
 
-    'title_prefix'     => '',
+    'title_prefix'       => '',
 
-    'title_postfix'    => '',
+    'title_postfix'      => '',
 
     /*
     |--------------------------------------------------------------------------
@@ -30,9 +30,9 @@ return [
     |
      */
 
-    'logo'             => '<b>Doctor</b>Strange',
+    'logo'               => '<b>Doctor</b>Strange',
 
-    'logo_mini'        => '<b>D</b>ST',
+    'logo_mini'          => '<b>D</b>ST',
 
     /*
     |--------------------------------------------------------------------------
@@ -45,7 +45,7 @@ return [
     |
      */
 
-    'skin'             => 'blue',
+    'skin'               => 'blue',
 
     /*
     |--------------------------------------------------------------------------
@@ -58,7 +58,7 @@ return [
     |
      */
 
-    'layout'           => null,
+    'layout'             => null,
 
     /*
     |--------------------------------------------------------------------------
@@ -71,7 +71,7 @@ return [
     |
      */
 
-    'collapse_sidebar' => false,
+    'collapse_sidebar'   => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -85,15 +85,17 @@ return [
     |
      */
 
-    'dashboard_url'    => 'home',
+    'dashboard_url'      => 'home',
 
-    'logout_url'       => 'logout',
+    'logout_url'         => 'logout',
 
-    'logout_method'    => null,
+    'logout_method'      => 'GET',
 
-    'login_url'        => 'login',
+    'login_url'          => 'login',
 
-    'register_url'     => 'register',
+    'register_url'       => null,
+
+    'password_reset_url' => null,
 
     /*
     |--------------------------------------------------------------------------
@@ -107,7 +109,7 @@ return [
     |
      */
 
-    'menu'             => [
+    'menu'               => [
         'MAIN NAVIGATION',
         [
             'text' => 'Blog',
@@ -197,7 +199,7 @@ return [
     |
      */
 
-    'filters'          => [
+    'filters'            => [
         JeroenNoten\LaravelAdminLte\Menu\Filters\HrefFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\ActiveFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\SubmenuFilter::class,
@@ -216,7 +218,7 @@ return [
     |
      */
 
-    'plugins'          => [
+    'plugins'            => [
         'datatables' => true,
         'select2'    => true,
         'chartjs'    => true,

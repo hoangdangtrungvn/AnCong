@@ -2,25 +2,42 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+
 class GeneralPractitionerController extends Controller
 {
     public function index()
     {
-        // $client = new Client();
-        // $response = $client->request('GET', 'https://reqres.in/api/users?page=2');
+        return view('general_practitioner.index');
+    }
 
-        // echo $response->getStatusCode(); # 200
-        // echo $response->getHeaderLine('content-type'); # 'application/json; charset=utf8'
-        // echo $response->getBody(); # '{"id": 1420053, "name": "guzzle", ...}'
+    public function create()
+    {
+        //
+    }
 
-        // # Send an asynchronous request.
-        // $request = new \GuzzleHttp\Psr7\Request('GET', 'https://api.github.com/repos/guzzle/guzzle');
-        // $promise = $client->sendAsync($request)->then(function ($response) {
-        //     echo 'I completed! ' . $response->getBody();
-        // });
+    public function store(Request $request)
+    {
+        //
+    }
 
-        // $promise->wait();
+    public function show($id)
+    {
+        //
+    }
 
-        return view('index');
+    public function edit($id)
+    {
+        //
+    }
+
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    public function destroy($id)
+    {
+        //
     }
 }

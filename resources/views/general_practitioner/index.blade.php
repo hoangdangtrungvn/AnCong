@@ -1,11 +1,9 @@
-{{-- resources/views/admin/dashboard.blade.php --}}
-
 @extends('adminlte::page')
 
-@section('title', 'Danh Sách Bệnh Nhân')
+@section('title', 'Dashboard')
 
 @section('content_header')
-<h1>Danh Sách Bệnh Nhân</h1>
+<h1>Dashboard</h1>
 @stop
 
 @section('content')
@@ -30,7 +28,8 @@
                     <tbody>
                         <tr>
                             <td>Trident</td>
-                            <td>Internet
+                            <td>
+                                Internet
                                 Explorer 4.0
                             </td>
                             <td>Win 95+</td>
@@ -39,7 +38,8 @@
                         </tr>
                         <tr>
                             <td>Trident</td>
-                            <td>Internet
+                            <td>
+                                Internet
                                 Explorer 5.0
                             </td>
                             <td>Win 95+</td>
@@ -48,7 +48,8 @@
                         </tr>
                         <tr>
                             <td>Trident</td>
-                            <td>Internet
+                            <td>
+                                Internet
                                 Explorer 5.5
                             </td>
                             <td>Win 95+</td>
@@ -57,7 +58,8 @@
                         </tr>
                         <tr>
                             <td>Trident</td>
-                            <td>Internet
+                            <td>
+                                Internet
                                 Explorer 6
                             </td>
                             <td>Win 98+</td>
@@ -335,7 +337,10 @@
                             <td>Nintendo DS browser</td>
                             <td>Nintendo DS</td>
                             <td>8.5</td>
-                            <td>C/A<sup>1</sup></td>
+                            <td>
+                                C/A
+                                <sup>1</sup>
+                            </td>
                         </tr>
                         <tr>
                             <td>KHTML</td>
@@ -457,7 +462,7 @@
 @stop
 
 @section('css')
-<link rel="stylesheet" href="/css/admin_custom.css">
+<link rel="stylesheet" href="/css/admin_custom.css" />
 @stop
 
 @section('js')

@@ -3,5 +3,6 @@
   <PropertyGroup>
     <RuntimePath>C:\Program Files (x86)\IIS Express\PHP\v7.1\php.exe</RuntimePath>
     <SpecificPageValue />
+    <ProjectView>ShowAllFiles</ProjectView>
   </PropertyGroup>
 </Project>

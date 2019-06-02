@@ -12,9 +12,14 @@
  */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
-Route::resource('patients', 'PatientController');
+Route::get('login', 'AuthController@showLoginForm')->name('login');
+Route::post('login', 'AuthController@login');
+Route::get('logout', 'AuthController@logout')->name('logout');
 
-Route::get('/index', 'GeneralPractitionerController@index')->name('index');
+Route::post('coordinators/assign', 'CoordinatorController@assign')->name('coordinators.assign');
+
+Route::resource('coordinators', 'CoordinatorController');
+Route::resource('general-practitioners', 'GeneralPractitionerController');
