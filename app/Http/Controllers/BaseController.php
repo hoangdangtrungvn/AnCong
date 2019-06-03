@@ -16,7 +16,7 @@ class BaseController extends Controller
 
     protected function auth()
     {
-        if (session('headers') == null || session('headers') == []) {
+        if (session('token_auth') == null || session('token_auth') == []) {
             return redirect()->route('login')->send();
         }
     }

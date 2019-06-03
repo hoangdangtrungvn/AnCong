@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class GeneralPractitionerController extends Controller
+class DoctorController extends Controller
 {
     public function index()
     {
-        return view('general_practitioner.index');
+        return view('doctor.index');
     }
 
     public function create()

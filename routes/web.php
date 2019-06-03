@@ -22,4 +22,4 @@ Route::get('logout', 'AuthController@logout')->name('logout');
 Route::post('coordinators/assign', 'CoordinatorController@assign')->name('coordinators.assign');
 
 Route::resource('coordinators', 'CoordinatorController');
-Route::resource('general-practitioners', 'GeneralPractitionerController');
+Route::resource('doctors', 'DoctorController');

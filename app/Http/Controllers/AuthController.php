@@ -20,15 +20,19 @@ class AuthController extends Controller
         switch ($request->type) {
             case '1':
                 $loginUri = '/coordinator_auth/sign_in';
+                $routeName = 'coordinators.index';
                 break;
             case '2':
                 $loginUri = '/dietician_auth/sign_in';
+                $routeName = 'dieticians.index';
                 break;
             case '3':
                 $loginUri = '/specialist_auth/sign_in';
+                $routeName = 'specialists.index';
                 break;
             case '4':
                 $loginUri = '/doctor_auth/sign_in';
+                $routeName = 'doctors.index';
                 break;
         }
 
@@ -45,13 +49,14 @@ class AuthController extends Controller
             $response = $e->getResponse();
         }
 
-        $this->setHeaders($response->getHeaders());
+        $this->setTokenAuth($response->getHeaders());
+        $this->setLogoutUri($request->type);
 
         $body = json_decode($response->getBody());
         $body->success = isset($body->success) ? true : false;
 
         if ($body->success && $response->getStatusCode() == 200) {
-            return redirect()->route('coordinators.index')->with('alert', [
+            return redirect()->route($routeName)->with('alert', [
                 'class'   => 'alert-success',
                 'icon'    => 'fa fa-check',
                 'message' => 'Đăng nhập thành công.',
@@ -70,8 +75,8 @@ class AuthController extends Controller
         $client = new Client(['base_uri' => config('api.base_uri')]);
 
         try {
-            $response = $client->delete('/coordinator_auth/sign_out', [
-                'headers' => session('headers'),
+            $response = $client->delete(session('logout_uri'), [
+                'headers' => session('token_auth'),
             ]);
         } catch (RequestException $e) {
             $response = $e->getResponse();
@@ -98,7 +103,7 @@ class AuthController extends Controller
         ]);
     }
 
-    private function setHeaders($headers)
+    private function setTokenAuth($headers)
     {
         $data = [];
 
@@ -118,6 +123,24 @@ class AuthController extends Controller
             $data['uid'] = $headers['uid'][0];
         }
 
-        session(['headers' => $data]);
+        session(['token_auth' => $data]);
+    }
+
+    private function setLogoutUri($type)
+    {
+        switch ($type) {
+            case '1':
+                session(['logout_uri' => '/coordinator_auth/sign_out']);
+                break;
+            case '2':
+                session(['logout_uri' => '/dietician_auth/sign_out']);
+                break;
+            case '3':
+                session(['logout_uri' => '/specialist_auth/sign_out']);
+                break;
+            case '4':
+                session(['logout_uri' => '/doctor_auth/sign_out']);
+                break;
+        }
     }
 }

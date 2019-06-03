@@ -31,7 +31,7 @@ class CoordinatorController extends BaseController
             }
 
             $response = $client->send($req, [
-                'headers' => session('headers'),
+                'headers' => session('token_auth'),
             ]);
         } catch (RequestException $e) {
             $response = $e->getResponse();
@@ -42,8 +42,6 @@ class CoordinatorController extends BaseController
         }
 
         $data = json_decode($response->getBody(), true);
-
-        // dd($data);
 
         $users = $data['users'];
         $doctors = $data['doctors'];
@@ -63,7 +61,7 @@ class CoordinatorController extends BaseController
         if ($request->doctor_uri == '/assign/dietician') {
             $req = new GuzzleHttpRequest('POST', $request->doctor_uri);
             $response = $client->send($req, [
-                'headers'     => session('headers'),
+                'headers'     => session('token_auth'),
                 'form_params' => [
                     'user_id'      => $request->user_id,
                     'dietician_id' => $request->doctor_id,
@@ -84,7 +82,7 @@ class CoordinatorController extends BaseController
         if ($request->doctor_uri == '/assign/doctor') {
             $req = new GuzzleHttpRequest('POST', $request->doctor_uri);
             $response = $client->send($req, [
-                'headers'     => session('headers'),
+                'headers'     => session('token_auth'),
                 'form_params' => [
                     'user_id'   => $request->user_id,
                     'doctor_id' => $request->doctor_id,
