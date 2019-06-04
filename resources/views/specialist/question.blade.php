@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Câu Hỏi Bệnh Nhân | Bác Sĩ Điều Trị')
+@section('title', 'Câu Hỏi Bệnh Nhân | Bác Sĩ Chuyên Khoa')
 
 @section('content_header')
 <h1>CÂU HỎI BỆNH NHÂN</h1>
@@ -52,12 +52,14 @@
                             <td>{{ $question->id }}</td>
                             <td>{{ $question->content }}</td>
                             <td>{{ date('d-m-Y H:i:s', strtotime($question->created_at)) }}</td>
-                            <td>{{ $record_count }}</td>
+                            <td>{{ count($doctor_records) }}</td>
                         </tr>
                     </tbody>
                 </table>
-                <h4>Hình ảnh:</h4>
                 <div class="row">
+                    <div class="col-lg-12">
+                        <h4>HÌNH ẢNH</h4>
+                    </div>
                     @foreach ($images as $image)
                     <div class="col-xs-6 col-md-3">
                         <a href="{{ config('api.base_uri').$image->link_path }}" class="thumbnail gallery" data-fancybox="gallery">
@@ -71,41 +73,16 @@
                         <h4>DANH SÁCH TƯ VẤN</h4>
                         <div class="nav-tabs-custom">
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#record_to_user" data-toggle="tab">Bệnh nhân ({{ count($user_records) }})</a></li>
-                                <li><a href="#record_to_specialist" data-toggle="tab">Bác Sĩ ({{ count($doctor_records) }})</a></li>
+                                <li class="active"><a href="#record_to_specialist" data-toggle="tab">Bác Sĩ ({{ count($doctor_records) }})</a></li>
                             </ul>
                             <div class="tab-content">
-                                <div class="tab-pane active" id="record_to_user">
-                                    @foreach ($user_records as $record)
-                                    <div class="panel-group" id="tab_record_{{ $record->id }}">
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title">
-                                                        <a data-toggle="collapse" data-parent="#tab_record_{{ $record->id }}" href="#collapse_{{ $record->id }}">{{ $record->creator == 1 ? 'Tư vấn của bác sĩ điều trị:' : 'Tư vấn của bác sĩ chuyên khoa:' }} {{ $record->doctor_name }} - Thời gian: {{ date('d-m-Y H:i:s', strtotime($record->created_at)) }}</a>
-                                                </h4>
-                                            </div>
-                                            <div id="collapse_{{ $record->id }}" class="panel-collapse collapse">
-                                                <div class="panel-body">
-                                                    <h4>Chỉ định</h4>
-                                                    {!! $record->assign !!}
-                                                    <h4>Kê đơn</h4>
-                                                    {!! $record->prescription !!}
-                                                    <h4>Kết luận</h4>
-                                                    {!! $record->reasoning !!}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    @endforeach
-                                </div>
-                                <!-- /.tab-pane -->
-                                <div class="tab-pane" id="record_to_specialist">
+                                <div class="tab-pane active" id="record_to_specialist">
                                     @foreach ($doctor_records as $record)
                                     <div class="panel-group" id="tab_record_{{ $record->id }}">
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
                                                 <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#tab_record_{{ $record->id }}" href="#collapse_{{ $record->id }}">Tư vấn của bác sĩ điều trị: {{ $record->doctor_name }} - Thời gian: {{ date('d-m-Y H:i:s', strtotime($record->created_at)) }}</a>
+                                                    <a data-toggle="collapse" data-parent="#tab_record_{{ $record->id }}" href="#collapse_{{ $record->id }}">{{ $record->creator == 1 ? 'Tư vấn của bác sĩ điều trị:' : 'Tư vấn của bác sĩ chuyên khoa:' }} {{ $record->doctor_name }} - Thời gian: {{ date('d-m-Y H:i:s', strtotime($record->created_at)) }}</a>
                                                 </h4>
                                             </div>
                                             <div id="collapse_{{ $record->id }}" class="panel-collapse collapse">
@@ -152,16 +129,14 @@
             <div class="modal-body">
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#tab_user" data-toggle="tab">Bệnh nhân</a></li>
-                        @if ($specialists)
-                        <li><a href="#tab_specialist" data-toggle="tab">Bác sĩ chuyên khoa</a></li>
-                        @endif
+                        <li class="active"><a href="#tab_specialist" data-toggle="tab">Bác sĩ phụ trách</a></li>
                     </ul>
                     <div class="tab-content">
-                        <div class="tab-pane active" id="tab_user">
-                            <form action="{{ route('doctors.message') }}" method="POST">
+                        <div class="tab-pane active" id="tab_specialist">
+                            <form action="{{ route('specialists.message') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="question_id" value="{{ $question->id }}" />
+                                <input type="hidden" name="doctor_id" value="{{ $doctor_id }}" />
                                 <div class="form-group">
                                     <label>Chỉ định của bác sĩ</label>
                                     <textarea name="assign" class="textarea" placeholder="Nội dung chỉ định"></textarea>
@@ -178,37 +153,6 @@
                             </form>
                         </div>
                         <!-- /.tab-pane -->
-                        @if ($specialists)
-                        <div class="tab-pane" id="tab_specialist">
-                            <form action="{{ route('doctors.message') }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="question_id" value="{{ $question->id }}" />
-                                <div class="form-group">
-                                    <label>Bác sĩ chuyên khoa</label>
-                                    <select name="specialist_id" class="form-control">
-                                        <option value="0">-- Chọn bác sĩ --</option>
-                                        @foreach ($specialists as $specialist)
-                                        <option value="{{ $specialist->id }}">{{ $specialist->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Chỉ định của bác sĩ</label>
-                                    <textarea name="assign" class="textarea" placeholder="Nội dung chỉ định"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label>Bác sĩ kê đơn</label>
-                                    <textarea name="prescription" class="textarea" placeholder="Nội dung kê đơn"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label>Kết luận của bác sĩ</label>
-                                    <textarea name="reasoning" class="textarea" placeholder="Kết luận của bác sĩ"></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-send"></i> Gửi Tư Vấn</button>
-                            </form>
-                        </div>
-                        <!-- /.tab-pane -->
-                        @endif
                     </div>
                     <!-- /.tab-content -->
                 </div>
@@ -223,12 +167,12 @@
 @section('css')
 <link rel="stylesheet" href="/template/backend/css/bootstrap3-wysihtml5.min.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="/template/backend/css/jquery.fancybox.min.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="/template/backend/css/doctor.css" />
+<link rel="stylesheet" href="/template/backend/css/specialist.css" />
 @stop
 
 @section('js')
 <script type="text/javascript" src="/template/backend/js/wysihtml5x-toolbar.min.js"></script>
 <script type="text/javascript" src="/template/backend/js/bootstrap3-wysihtml5.min.js"></script>
 <script type="text/javascript" src="/template/backend/js/jquery.fancybox.min.js"></script>
-<script src="/template/backend/js/doctor.js"></script>
+<script src="/template/backend/js/specialist.js"></script>
 @stop

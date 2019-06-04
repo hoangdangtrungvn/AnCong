@@ -26,3 +26,7 @@ Route::resource('doctors', 'DoctorController');
 Route::post('doctors/assign', 'DoctorController@assign')->name('doctors.assign');
 Route::post('doctors/message', 'DoctorController@message')->name('doctors.message');
 Route::get('doctors/question/{id}', 'DoctorController@question')->name('doctors.question');
+
+Route::resource('specialists', 'SpecialistController');
+Route::post('specialists/message', 'SpecialistController@message')->name('specialists.message');
+Route::get('specialists/question/{id}', 'SpecialistController@question')->name('specialists.question');
