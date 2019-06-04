@@ -34,7 +34,7 @@
                     <option value="1" {{ old('type', 1) == 1 ? 'selected' : '' }}>Điều phối viên</option>
                     <option value="2" {{ old('type') == 2 ? 'selected' : '' }}>Bác sĩ dinh dưỡng</option>
                     <option value="3" {{ old('type') == 3 ? 'selected' : '' }}>Bác sĩ chuyên khoa</option>
-                    <option value="4" {{ old('type') == 4 ? 'selected' : '' }}>Bác sĩ đa khoa</option>
+                    <option value="4" {{ old('type') == 4 ? 'selected' : '' }}>Bác sĩ điều trị</option>
                 </select>
                 @if ($errors->has('type'))
                 <span class="help-block">
@@ -43,7 +43,7 @@
                 @endif
             </div>
             <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
-                <input type="email" name="email" class="form-control" value="{{ old('email', 'trung@gmail.com') }}" placeholder="Địa chỉ e-mail" />
+                <input type="email" name="email" class="form-control" value="{{ old('email', 'doctor@gmail.com') }}" placeholder="Địa chỉ e-mail" />
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                 @if ($errors->has('email'))
                 <span class="help-block">
@@ -52,7 +52,7 @@
                 @endif
             </div>
             <div class="form-group has-feedback {{ $errors->has('password') ? 'has-error' : '' }}">
-                <input type="password" name="password" class="form-control" value="12345678" placeholder="Mật khẩu" />
+                <input type="password" name="password" class="form-control" value="neko1303" placeholder="Mật khẩu" />
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 @if ($errors->has('password'))
                 <span class="help-block">

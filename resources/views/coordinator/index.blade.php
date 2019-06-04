@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'DANH SÁCH BỆNH NHÂN')
+@section('title', 'Danh Sách Bệnh Nhân | Điều Phối Viên')
 
 @section('content_header')
 <h1>DANH SÁCH BỆNH NHÂN</h1>

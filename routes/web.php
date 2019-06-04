@@ -19,7 +19,10 @@ Route::get('login', 'AuthController@showLoginForm')->name('login');
 Route::post('login', 'AuthController@login');
 Route::get('logout', 'AuthController@logout')->name('logout');
 
+Route::resource('coordinators', 'CoordinatorController');
 Route::post('coordinators/assign', 'CoordinatorController@assign')->name('coordinators.assign');
 
-Route::resource('coordinators', 'CoordinatorController');
 Route::resource('doctors', 'DoctorController');
+Route::post('doctors/assign', 'DoctorController@assign')->name('doctors.assign');
+Route::post('doctors/message', 'DoctorController@message')->name('doctors.message');
+Route::get('doctors/question/{id}', 'DoctorController@question')->name('doctors.question');
